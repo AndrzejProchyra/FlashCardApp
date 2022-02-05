@@ -16,6 +16,9 @@ public class Card {
     }
 
     public void turn() {
+        if (isTurned) {
+            throw new IllegalStateException("Card already turned");
+        }
         isTurned = true;
     }
 }

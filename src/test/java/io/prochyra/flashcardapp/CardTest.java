@@ -3,6 +3,7 @@ package io.prochyra.flashcardapp;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CardTest {
 
@@ -24,4 +25,14 @@ class CardTest {
                 .isEqualTo("Paris");
     }
 
+    @Test
+    void turningCardTwiceThrowsException() {
+        Card card = new Card("concept", "definition");
+
+        card.turn();
+        
+        assertThatThrownBy(card::turn)
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage("Card already turned");
+    }
 }
