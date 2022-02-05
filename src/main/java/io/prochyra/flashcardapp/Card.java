@@ -16,9 +16,13 @@ public class Card {
     }
 
     public void turn() {
+        requireCardNotTurned();
+        isTurned = true;
+    }
+
+    private void requireCardNotTurned() {
         if (isTurned) {
             throw new IllegalStateException("Card already turned");
         }
-        isTurned = true;
     }
 }
