@@ -4,7 +4,7 @@ public class Card {
 
     private final String definition;
     private final String concept;
-    private boolean isTurned;
+    private boolean isFlipped;
 
     public Card(String concept, String definition) {
         this.concept = concept;
@@ -12,17 +12,17 @@ public class Card {
     }
 
     public String content() {
-        return isTurned ? definition : concept;
+        return isFlipped ? definition : concept;
     }
 
-    public void turn() {
-        requireCardNotTurned();
-        isTurned = true;
+    public void flip() {
+        requireCardNotFlipped();
+        isFlipped = true;
     }
 
-    private void requireCardNotTurned() {
-        if (isTurned) {
-            throw new IllegalStateException("Card already turned");
+    private void requireCardNotFlipped() {
+        if (isFlipped) {
+            throw new IllegalStateException("Card already flipped");
         }
     }
 }

@@ -16,23 +16,23 @@ class CardTest {
     }
 
     @Test
-    void turnedCardHasDefinition() {
+    void flippedCardHasDefinition() {
         Card card = new Card("Capital of France", "Paris");
 
-        card.turn();
+        card.flip();
 
         assertThat(card.content())
                 .isEqualTo("Paris");
     }
 
     @Test
-    void turningCardTwiceThrowsException() {
+    void flippingCardTwiceThrowsException() {
         Card card = new Card("concept", "definition");
 
-        card.turn();
+        card.flip();
         
-        assertThatThrownBy(card::turn)
+        assertThatThrownBy(card::flip)
                 .isInstanceOf(IllegalStateException.class)
-                .hasMessage("Card already turned");
+                .hasMessage("Card already flipped");
     }
 }
