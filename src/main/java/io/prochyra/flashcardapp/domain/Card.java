@@ -1,4 +1,4 @@
-package io.prochyra.flashcardapp;
+package io.prochyra.flashcardapp.domain;
 
 public class Card {
 

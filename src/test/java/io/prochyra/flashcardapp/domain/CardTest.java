@@ -1,4 +1,4 @@
-package io.prochyra.flashcardapp;
+package io.prochyra.flashcardapp.domain;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +30,7 @@ class CardTest {
         Card card = new Card("concept", "definition");
 
         card.flip();
-        
+
         assertThatThrownBy(card::flip)
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessage("Card already flipped");
