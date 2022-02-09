@@ -39,7 +39,7 @@ class CardTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {0, 3})
+    @ValueSource(ints = {0, 1, 2})
     void canRecordConfidenceForFlippedCard(int confidenceLevel) {
         Card card = new Card("concept", "definition");
         card.flip();
