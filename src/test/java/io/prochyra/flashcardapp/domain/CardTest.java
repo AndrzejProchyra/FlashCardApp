@@ -49,4 +49,13 @@ class CardTest {
         assertThat(card.confidence())
                 .isEqualTo(confidence);
     }
+
+    @Test
+    void recordingConfidenceOnUnflippedCardThrowsException() {
+        Card card = new Card("concept", "definition");
+
+        assertThatThrownBy(() -> card.recordConfidence(Confidence.LOW))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage("Card not flipped");
+    }
 }

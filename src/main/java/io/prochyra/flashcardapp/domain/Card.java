@@ -21,17 +21,24 @@ public class Card {
         isFlipped = true;
     }
 
+    public void recordConfidence(Confidence confidence) {
+        requireCardFlipped();
+        this.confidence = confidence;
+    }
+
+    public Confidence confidence() {
+        return confidence;
+    }
+
     private void requireCardNotFlipped() {
         if (isFlipped) {
             throw new IllegalStateException("Card already flipped");
         }
     }
 
-    public void recordConfidence(Confidence confidence) {
-        this.confidence = confidence;
-    }
-
-    public Confidence confidence() {
-        return confidence;
+    private void requireCardFlipped() {
+        if (!isFlipped) {
+            throw new IllegalStateException("Card not flipped");
+        }
     }
 }
