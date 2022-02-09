@@ -5,7 +5,7 @@ public class Card {
     private final String definition;
     private final String concept;
     private boolean isFlipped;
-    private int confidenceLevel;
+    private Confidence confidence;
 
     public Card(String concept, String definition) {
         this.concept = concept;
@@ -27,11 +27,11 @@ public class Card {
         }
     }
 
-    public void recordConfidence(int confidenceLevel) {
-        this.confidenceLevel = confidenceLevel;
+    public void recordConfidence(Confidence confidence) {
+        this.confidence = confidence;
     }
 
-    public int confidence() {
-        return confidenceLevel;
+    public Confidence confidence() {
+        return confidence;
     }
 }

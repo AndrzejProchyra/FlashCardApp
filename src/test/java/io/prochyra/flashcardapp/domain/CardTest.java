@@ -2,7 +2,7 @@ package io.prochyra.flashcardapp.domain;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -39,14 +39,14 @@ class CardTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {0, 1, 2})
-    void canRecordConfidenceForFlippedCard(int confidenceLevel) {
+    @CsvSource({"LOW", "MEDIUM", "HIGH"})
+    void canRecordConfidenceForFlippedCard(Confidence confidence) {
         Card card = new Card("concept", "definition");
         card.flip();
 
-        card.recordConfidence(confidenceLevel);
+        card.recordConfidence(confidence);
 
         assertThat(card.confidence())
-                .isEqualTo(confidenceLevel);
+                .isEqualTo(confidence);
     }
 }
