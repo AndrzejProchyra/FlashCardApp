@@ -1,6 +1,8 @@
 package io.prochyra.flashcardapp.domain;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -36,14 +38,15 @@ class CardTest {
                 .hasMessage("Card already flipped");
     }
 
-    @Test
-    void canRecordConfidenceForFlippedCard() {
+    @ParameterizedTest
+    @ValueSource(ints = {3})
+    void canRecordConfidenceForFlippedCard(int confidenceLevel) {
         Card card = new Card("concept", "definition");
         card.flip();
-        
-        card.recordConfidence(3);
+
+        card.recordConfidence(confidenceLevel);
 
         assertThat(card.confidence())
-                .isEqualTo(3);
+                .isEqualTo(confidenceLevel);
     }
 }
