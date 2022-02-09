@@ -25,4 +25,12 @@ public class Card {
             throw new IllegalStateException("Card already flipped");
         }
     }
+
+    public void recordConfidence(int confidenceLevel) {
+        
+    }
+
+    public int confidence() {
+        return 3;
+    }
 }

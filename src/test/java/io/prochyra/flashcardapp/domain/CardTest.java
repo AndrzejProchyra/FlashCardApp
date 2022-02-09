@@ -35,4 +35,15 @@ class CardTest {
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessage("Card already flipped");
     }
+
+    @Test
+    void canRecordConfidenceForFlippedCard() {
+        Card card = new Card("concept", "definition");
+        card.flip();
+        
+        card.recordConfidence(3);
+
+        assertThat(card.confidence())
+                .isEqualTo(3);
+    }
 }
