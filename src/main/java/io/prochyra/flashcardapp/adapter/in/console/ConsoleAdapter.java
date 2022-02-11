@@ -15,10 +15,10 @@ public class ConsoleAdapter {
     }
 
     public void start() {
-        askAboutOneCard();
+        askAboutOneCard(card);
     }
 
-    private void askAboutOneCard() {
+    private void askAboutOneCard(Card card) {
         System.out.println(card.content());
         scanner.nextLine();
         card.flip();
