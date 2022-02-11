@@ -7,13 +7,18 @@ import java.util.Scanner;
 public class ConsoleAdapter {
 
     private final Card card;
+    private final Scanner scanner;
 
     public ConsoleAdapter(Card card) {
         this.card = card;
+        scanner = new Scanner(System.in);
     }
 
     public void start() {
-        Scanner scanner = new Scanner(System.in);
+        askAboutOneCard();
+    }
+
+    private void askAboutOneCard() {
         System.out.println(card.content());
         scanner.nextLine();
         card.flip();
