@@ -2,20 +2,23 @@ package io.prochyra.flashcardapp.adapter.in.console;
 
 import io.prochyra.flashcardapp.domain.Card;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleAdapter {
 
-    private final Card card;
     private final Scanner scanner;
+    private final List<Card> deck;
 
-    public ConsoleAdapter(Card card) {
-        this.card = card;
+    public ConsoleAdapter(List<Card> deck) {
+        this.deck = deck;
         scanner = new Scanner(System.in);
     }
 
     public void start() {
-        askAboutOneCard(card);
+        for (Card card : deck) {
+            askAboutOneCard(card);
+        }
     }
 
     private void askAboutOneCard(Card card) {
