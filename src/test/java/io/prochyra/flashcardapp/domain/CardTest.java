@@ -1,6 +1,5 @@
 package io.prochyra.flashcardapp.domain;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -9,13 +8,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CardTest {
-
-    private Card card;
-
-    @BeforeEach
-    void setUp() {
-        card = new Card("concept", "definition");
-    }
 
     @Test
     void initialDisplayOfCardHasConcept() {
@@ -37,6 +29,8 @@ class CardTest {
 
     @Test
     void flippingCardTwiceThrowsException() {
+        Card card = new Card("concept", "definition");
+
         card.flip();
 
         assertThatThrownBy(card::flip)
@@ -47,6 +41,7 @@ class CardTest {
     @ParameterizedTest
     @CsvSource({"LOW", "MEDIUM", "HIGH"})
     void canRecordConfidenceForFlippedCard(Confidence confidence) {
+        Card card = new Card("concept", "definition");
         card.flip();
 
         card.recordConfidence(confidence);
@@ -57,6 +52,8 @@ class CardTest {
 
     @Test
     void recordingConfidenceOnUnflippedCardThrowsException() {
+        Card card = new Card("concept", "definition");
+
         assertThatThrownBy(() -> card.recordConfidence(Confidence.LOW))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessage("Card not flipped");
