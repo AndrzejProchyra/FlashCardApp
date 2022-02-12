@@ -1,16 +1,16 @@
 package io.prochyra.flashcardapp.adapter.in.console;
 
 import io.prochyra.flashcardapp.domain.Card;
+import io.prochyra.flashcardapp.domain.Deck;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleAdapter {
 
     private final Scanner scanner;
-    private final List<Card> deck;
+    private final Deck deck;
 
-    public ConsoleAdapter(List<Card> deck) {
+    public ConsoleAdapter(Deck deck) {
         this.deck = deck;
         scanner = new Scanner(System.in);
     }
