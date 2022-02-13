@@ -3,6 +3,7 @@ package io.prochyra.flashcardapp.adapter.in.console;
 import io.prochyra.flashcardapp.domain.Card;
 import io.prochyra.flashcardapp.domain.Deck;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleAdapter {
@@ -16,7 +17,8 @@ public class ConsoleAdapter {
     }
 
     public void start() {
-        for (Card card : deck) {
+        List<Card> lowConfidenceCards = deck.lowConfidenceCards();
+        for (Card card : lowConfidenceCards) {
             askAboutOneCard(card);
         }
     }
