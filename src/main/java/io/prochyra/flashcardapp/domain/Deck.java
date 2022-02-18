@@ -26,4 +26,10 @@ public class Deck implements Iterable<Card> {
     public Spliterator<Card> spliterator() {
         return cards.spliterator();
     }
+
+    public List<Card> lowConfidenceCards() {
+        return cards.stream()
+                .filter(card -> card.confidence().equals(Confidence.LOW))
+                .toList();
+    }
 }
