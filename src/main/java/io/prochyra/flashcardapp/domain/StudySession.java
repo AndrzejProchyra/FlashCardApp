@@ -1,11 +1,17 @@
 package io.prochyra.flashcardapp.domain;
 
-public class StudySession {
-    public StudySession(Deck deck, int cardCount) {
+import java.util.Iterator;
 
+public class StudySession {
+    private final Deck deck;
+    private final Iterator<Card> cardIterator;
+
+    public StudySession(Deck deck, int cardCount) {
+        this.deck = deck;
+        cardIterator = deck.iterator();
     }
 
     public Card nextCard() {
-        return new Card("concept", "definition");
+        return cardIterator.next();
     }
 }
