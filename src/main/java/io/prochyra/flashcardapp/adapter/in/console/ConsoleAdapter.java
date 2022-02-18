@@ -21,6 +21,8 @@ public class ConsoleAdapter {
         for (Card card : unknownConfidenceCards) {
             askAboutOneCard(card);
         }
+        System.out.println("Stats for this deck:");
+        System.out.println("High confidence: " + deck.highConfidenceCount());
     }
 
     private void askAboutOneCard(Card card) {

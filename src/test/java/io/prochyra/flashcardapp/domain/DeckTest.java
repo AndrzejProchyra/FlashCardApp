@@ -33,4 +33,16 @@ class DeckTest {
         assertThat(deck.unknownConfidenceCards())
                 .containsOnly(unknownConfidenceCard);
     }
+
+    @Test
+    void givesACountOfHighConfidenceCards() {
+        Card unknownConfidenceCard1 = new Card("concept", "definition");
+        Card unknownConfidenceCard2 = new Card("concept", "definition");
+        Card highConfidenceCard = new Card("concept", "definition");
+        highConfidenceCard.flip();
+        highConfidenceCard.recordConfidence(Confidence.HIGH);
+        Deck deck = new Deck(List.of(unknownConfidenceCard1, unknownConfidenceCard2, highConfidenceCard));
+
+        assertThat(deck.highConfidenceCount()).isOne();
+    }
 }
