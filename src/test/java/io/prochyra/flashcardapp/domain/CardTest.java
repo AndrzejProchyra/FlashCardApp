@@ -58,4 +58,12 @@ class CardTest {
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessage("Card not flipped");
     }
+
+    @Test
+    void aNewCardHasUnknownConfidence() {
+        Card card = new Card("concept", "definition");
+
+        assertThat(card.confidence())
+                .isEqualTo(Confidence.UNKNOWN);
+    }
 }

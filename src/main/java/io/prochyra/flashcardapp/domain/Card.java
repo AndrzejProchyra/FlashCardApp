@@ -10,6 +10,7 @@ public class Card {
     public Card(String concept, String definition) {
         this.concept = concept;
         this.definition = definition;
+        confidence = Confidence.UNKNOWN;
     }
 
     public String content() {
