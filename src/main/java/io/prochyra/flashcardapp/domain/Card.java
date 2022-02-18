@@ -42,4 +42,36 @@ public class Card {
             throw new IllegalStateException("Card not flipped");
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Card card = (Card) o;
+
+        if (isFlipped != card.isFlipped) return false;
+        if (!definition.equals(card.definition)) return false;
+        if (!concept.equals(card.concept)) return false;
+        return confidence == card.confidence;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = definition.hashCode();
+        result = 31 * result + concept.hashCode();
+        result = 31 * result + (isFlipped ? 1 : 0);
+        result = 31 * result + confidence.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "definition='" + definition + '\'' +
+                ", concept='" + concept + '\'' +
+                ", isFlipped=" + isFlipped +
+                ", confidence=" + confidence +
+                '}';
+    }
 }
