@@ -12,4 +12,8 @@ public class StudySession {
     public Card nextCard() {
         return cardIterator.next();
     }
+
+    public boolean hasNextCard() {
+        return cardIterator.hasNext();
+    }
 }

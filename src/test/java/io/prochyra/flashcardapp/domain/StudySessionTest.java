@@ -17,6 +17,8 @@ class StudySessionTest {
 
         assertThat(sessionCard)
                 .isEqualTo(deckCard);
+        assertThat(session.hasNextCard())
+                .isFalse();
     }
 
     @Test
@@ -29,6 +31,15 @@ class StudySessionTest {
                 .isEqualTo(cardA);
         assertThat(studySession.nextCard())
                 .isEqualTo(cardB);
+    }
+
+    @Test
+    void givenASessionWithOneCard_WhenWeAskIfHasNextCard_ThenItDoes() {
+        Card card = new Card("x", "x");
+        StudySession studySession = createWithDeckOf(card);
+
+        assertThat(studySession.hasNextCard())
+                .isTrue();
     }
 
     private StudySession createWithDeckOf(Card... cards) {
