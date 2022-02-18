@@ -32,4 +32,10 @@ public class Deck implements Iterable<Card> {
                 .filter(card -> card.confidence().equals(Confidence.LOW))
                 .toList();
     }
+
+    public List<Card> unknownConfidenceCards() {
+        return cards.stream()
+                .filter(card -> card.confidence().equals(Confidence.UNKNOWN))
+                .toList();
+    }
 }

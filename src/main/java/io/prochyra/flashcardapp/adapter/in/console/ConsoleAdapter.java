@@ -17,8 +17,8 @@ public class ConsoleAdapter {
     }
 
     public void start() {
-        List<Card> lowConfidenceCards = deck.lowConfidenceCards();
-        for (Card card : lowConfidenceCards) {
+        List<Card> unknownConfidenceCards = deck.unknownConfidenceCards();
+        for (Card card : unknownConfidenceCards) {
             askAboutOneCard(card);
         }
     }

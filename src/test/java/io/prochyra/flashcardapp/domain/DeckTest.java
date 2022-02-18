@@ -21,4 +21,16 @@ class DeckTest {
         assertThat(deck.lowConfidenceCards())
                 .containsOnly(lowConfidenceCard);
     }
+
+    @Test
+    void returnsUnknownConfidenceCards() {
+        Card lowConfidenceCard = new Card("concept", "definition");
+        lowConfidenceCard.flip();
+        lowConfidenceCard.recordConfidence(Confidence.LOW);
+        Card unknownConfidenceCard = new Card("concept", "definition");
+        Deck deck = new Deck(List.of(lowConfidenceCard, unknownConfidenceCard));
+
+        assertThat(deck.unknownConfidenceCards())
+                .containsOnly(unknownConfidenceCard);
+    }
 }
