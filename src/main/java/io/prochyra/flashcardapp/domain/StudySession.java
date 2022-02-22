@@ -30,7 +30,8 @@ public class StudySession {
 
     private void requireEnoughCardsInDeck(Deck deck, int cardCount) {
         if (cardCount > deck.totalCardCount()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(String.format("Can't create session of %d cards from deck with only %d.",
+                    cardCount, deck.totalCardCount()));
         }
     }
 }

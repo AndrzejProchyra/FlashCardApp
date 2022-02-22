@@ -70,7 +70,8 @@ class StudySessionTest {
         Deck deck = new Deck(List.of(new Card("", "")));
 
         assertThatThrownBy(() -> new StudySession(deck, 2))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Can't create session of 2 cards from deck with only 1.");
     }
 
     private StudySession createWithDeckOf(Card... cards) {
