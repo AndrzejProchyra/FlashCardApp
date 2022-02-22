@@ -8,6 +8,9 @@ public class StudySession {
 
     public StudySession(Deck deck, int cardCount) {
         requireOneOrMoreCards(cardCount);
+        if (cardCount > deck.totalCardCount()) {
+            throw new IllegalArgumentException();
+        }
         cardIterator = deck.iterator();
         this.cardCount = cardCount;
     }

@@ -65,6 +65,14 @@ class StudySessionTest {
                 .hasMessage("Study session must have at least one card.");
     }
 
+    @Test
+    void sessionWithMoreCardsThanDeckHasThrowsException() {
+        Deck deck = new Deck(List.of(new Card("", "")));
+
+        assertThatThrownBy(() -> new StudySession(deck, 2))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     private StudySession createWithDeckOf(Card... cards) {
         Deck deck = new Deck(List.of(cards));
         return new StudySession(deck, cards.length);
