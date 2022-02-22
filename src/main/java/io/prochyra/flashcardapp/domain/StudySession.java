@@ -7,9 +7,7 @@ public class StudySession {
     private int cardCount;
 
     public StudySession(Deck deck, int cardCount) {
-        if (cardCount <= 0) {
-            throw new IllegalArgumentException();
-        }
+        requireOneOrMoreCards(cardCount);
         cardIterator = deck.iterator();
         this.cardCount = cardCount;
     }
@@ -21,5 +19,11 @@ public class StudySession {
 
     public boolean hasNextCard() {
         return cardCount > 0;
+    }
+
+    private void requireOneOrMoreCards(int cardCount) {
+        if (cardCount <= 0) {
+            throw new IllegalArgumentException();
+        }
     }
 }
