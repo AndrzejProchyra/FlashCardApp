@@ -44,4 +44,8 @@ public class Deck implements Iterable<Card> {
                 .filter(card -> card.confidence().equals(Confidence.HIGH))
                 .count();
     }
+
+    public int totalCardCount() {
+        return cards.size();
+    }
 }

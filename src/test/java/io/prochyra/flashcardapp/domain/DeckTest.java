@@ -45,4 +45,18 @@ class DeckTest {
 
         assertThat(deck.highConfidenceCount()).isOne();
     }
+
+    @Test
+    void givesTotalCountOfCards() {
+        List<Card> threeCards = List.of(
+                new Card("a", "a"), 
+                new Card("b", "b"), 
+                new Card("c", "c")
+        );
+        
+        Deck deck = new Deck(threeCards);
+        
+        assertThat(deck.totalCardCount())
+                .isEqualTo(3);
+    }
 }
