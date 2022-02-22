@@ -4,16 +4,19 @@ import java.util.Iterator;
 
 public class StudySession {
     private final Iterator<Card> cardIterator;
+    private int cardCount;
 
     public StudySession(Deck deck, int cardCount) {
         cardIterator = deck.iterator();
+        this.cardCount = cardCount;
     }
 
     public Card nextCard() {
+        cardCount--;
         return cardIterator.next();
     }
 
     public boolean hasNextCard() {
-        return cardIterator.hasNext();
+        return cardCount > 0;
     }
 }

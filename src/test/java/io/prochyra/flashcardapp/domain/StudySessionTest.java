@@ -42,6 +42,19 @@ class StudySessionTest {
                 .isTrue();
     }
 
+    @Test
+    void givenSessionOfOneCardCreatedFromDeckWithTwoCards_HasNextCardReturnsFalse() {
+        Card cardA = new Card("a", "a");
+        Card cardB = new Card("b", "b");
+        Deck deck = new Deck(List.of(cardA, cardB));
+        StudySession session = new StudySession(deck, 1);
+        
+        session.nextCard();
+        
+        assertThat(session.hasNextCard())
+                .isFalse();
+    }
+
     private StudySession createWithDeckOf(Card... cards) {
         Deck deck = new Deck(List.of(cards));
         return new StudySession(deck, cards.length);
