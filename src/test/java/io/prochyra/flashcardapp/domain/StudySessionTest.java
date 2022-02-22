@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class StudySessionTest {
 
@@ -48,11 +49,19 @@ class StudySessionTest {
         Card cardB = new Card("b", "b");
         Deck deck = new Deck(List.of(cardA, cardB));
         StudySession session = new StudySession(deck, 1);
-        
+
         session.nextCard();
-        
+
         assertThat(session.hasNextCard())
                 .isFalse();
+    }
+
+    @Test
+    void sessionOfZeroCardCountThrowsException() {
+        Deck deck = new Deck(List.of());
+
+        assertThatThrownBy(() -> new StudySession(deck, 0))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     private StudySession createWithDeckOf(Card... cards) {
