@@ -8,9 +8,7 @@ public class StudySession {
 
     public StudySession(Deck deck, int cardCount) {
         requireOneOrMoreCards(cardCount);
-        if (cardCount > deck.totalCardCount()) {
-            throw new IllegalArgumentException();
-        }
+        requireEnoughCardsInDeck(deck, cardCount);
         cardIterator = deck.iterator();
         this.cardCount = cardCount;
     }
@@ -27,6 +25,12 @@ public class StudySession {
     private void requireOneOrMoreCards(int cardCount) {
         if (cardCount <= 0) {
             throw new IllegalArgumentException("Study session must have at least one card.");
+        }
+    }
+
+    private void requireEnoughCardsInDeck(Deck deck, int cardCount) {
+        if (cardCount > deck.totalCardCount()) {
+            throw new IllegalArgumentException();
         }
     }
 }
