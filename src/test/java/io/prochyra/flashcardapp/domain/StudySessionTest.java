@@ -61,7 +61,8 @@ class StudySessionTest {
         Deck deck = new Deck(List.of());
 
         assertThatThrownBy(() -> new StudySession(deck, 0))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Study session must have at least one card.");
     }
 
     private StudySession createWithDeckOf(Card... cards) {

@@ -23,7 +23,7 @@ public class StudySession {
 
     private void requireOneOrMoreCards(int cardCount) {
         if (cardCount <= 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Study session must have at least one card.");
         }
     }
 }
