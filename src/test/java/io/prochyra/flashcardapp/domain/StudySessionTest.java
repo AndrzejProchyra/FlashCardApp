@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class StudySessionTest {
 
     @Test
-    void givenADeckWithOneCardAndWeCreateASessionWithOneCard_WhenWeAskForACard_ThenWeGetTheCard() {
+    void sessionOfOneCardFromDeckOfOneCard_AskForCard_GetCard() {
         Card deckCard = new Card("concept", "definition");
         StudySession session = createWithDeckOf(deckCard);
 
@@ -23,7 +23,7 @@ class StudySessionTest {
     }
 
     @Test
-    void givenADeckWithTwoCardsAndWeCreateASessionWithTwoCards_WhenWeAskForTwoCards_ThenWeGetTheCards() {
+    void sessionOfManyCardsFromDeckOfManyCards_AskForManyCards_GetCards() {
         Card cardA = new Card("A", "A");
         Card cardB = new Card("B", "B");
         StudySession studySession = createWithDeckOf(cardA, cardB);
@@ -35,7 +35,7 @@ class StudySessionTest {
     }
 
     @Test
-    void givenASessionWithOneCard_WhenWeAskIfHasNextCard_ThenItDoes() {
+    void sessionWithOneCard_askIfHasNextCard_ItDoes() {
         Card card = new Card("x", "x");
         StudySession studySession = createWithDeckOf(card);
 
@@ -44,7 +44,7 @@ class StudySessionTest {
     }
 
     @Test
-    void givenSessionOfOneCardCreatedFromDeckWithTwoCards_HasNextCardReturnsFalse() {
+    void sessionOfOneCardFromDeckWithManyCards_AskingForSecondCardReturnsFalse() {
         Card cardA = new Card("a", "a");
         Card cardB = new Card("b", "b");
         Deck deck = new Deck(List.of(cardA, cardB));
@@ -57,7 +57,7 @@ class StudySessionTest {
     }
 
     @Test
-    void sessionOfZeroCardCountThrowsException() {
+    void sessionOfZeroCardsThrowsException() {
         Deck deck = new Deck(List.of());
 
         assertThatThrownBy(() -> new StudySession(deck, 0))
