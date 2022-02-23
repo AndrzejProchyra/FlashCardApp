@@ -59,4 +59,14 @@ class DeckTest {
         assertThat(deck.totalCardCount())
                 .isEqualTo(3);
     }
+
+    @Test
+    void givesCountOfMediumConfidenceCards() {
+        Card mediumConfidenceCard = new Card("x", "x");
+        mediumConfidenceCard.flip();
+        mediumConfidenceCard.recordConfidence(Confidence.MEDIUM);
+        Deck deck = new Deck(List.of(mediumConfidenceCard));
+        
+        assertThat(deck.mediumConfidenceCount()).isOne();
+    }
 }
