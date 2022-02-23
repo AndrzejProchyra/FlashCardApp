@@ -9,35 +9,35 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class StudySessionTest {
 
+    private static final Card ANY_CARD = new Card("x", "x");
+    private static final Card CARD_A = new Card("A", "A");
+    private static final Card CARD_B = new Card("B", "B");
+
     @Test
     void sessionOfOneCardFromDeckOfOneCard_AskForCard_GetCard() {
-        Card deckCard = new Card("concept", "definition");
-        StudySession session = createWithDeckOf(deckCard);
+        StudySession session = createWithDeckOf(ANY_CARD);
 
         Card sessionCard = session.nextCard();
 
         assertThat(sessionCard)
-                .isEqualTo(deckCard);
+                .isEqualTo(ANY_CARD);
         assertThat(session.hasNextCard())
                 .isFalse();
     }
 
     @Test
     void sessionOfManyCardsFromDeckOfManyCards_AskForManyCards_GetCards() {
-        Card cardA = new Card("A", "A");
-        Card cardB = new Card("B", "B");
-        StudySession studySession = createWithDeckOf(cardA, cardB);
+        StudySession studySession = createWithDeckOf(CARD_A, CARD_B);
 
         assertThat(studySession.nextCard())
-                .isEqualTo(cardA);
+                .isEqualTo(CARD_A);
         assertThat(studySession.nextCard())
-                .isEqualTo(cardB);
+                .isEqualTo(CARD_B);
     }
 
     @Test
     void sessionWithOneCard_askIfHasNextCard_ItDoes() {
-        Card card = new Card("x", "x");
-        StudySession studySession = createWithDeckOf(card);
+        StudySession studySession = createWithDeckOf(ANY_CARD);
 
         assertThat(studySession.hasNextCard())
                 .isTrue();
@@ -45,9 +45,7 @@ class StudySessionTest {
 
     @Test
     void sessionOfOneCardFromDeckWithManyCards_AskingForSecondCardReturnsFalse() {
-        Card cardA = new Card("a", "a");
-        Card cardB = new Card("b", "b");
-        Deck deck = new Deck(List.of(cardA, cardB));
+        Deck deck = new Deck(List.of(CARD_A, CARD_B));
         StudySession session = new StudySession(deck, 1);
 
         session.nextCard();
@@ -58,7 +56,7 @@ class StudySessionTest {
 
     @Test
     void sessionOfZeroCardsThrowsException() {
-        Deck deck = new Deck(List.of());
+        Deck deck = new Deck(List.of(ANY_CARD));
 
         assertThatThrownBy(() -> new StudySession(deck, 0))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -67,9 +65,9 @@ class StudySessionTest {
 
     @Test
     void sessionWithMoreCardsThanDeckHasThrowsException() {
-        Deck deck = new Deck(List.of(new Card("", "")));
+        Deck oneCardDeck = new Deck(List.of(ANY_CARD));
 
-        assertThatThrownBy(() -> new StudySession(deck, 2))
+        assertThatThrownBy(() -> new StudySession(oneCardDeck, 2))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Can't create session of 2 cards from deck with only 1.");
     }
