@@ -8,9 +8,13 @@ public class Card {
     private Confidence confidence;
 
     public Card(String concept, String definition) {
+        this(concept, definition, Confidence.UNKNOWN);
+    }
+
+    public Card(String concept, String definition, Confidence confidence) {
         this.concept = concept;
         this.definition = definition;
-        confidence = Confidence.UNKNOWN;
+        this.confidence = confidence;
     }
 
     public String content() {
