@@ -23,6 +23,7 @@ public class ConsoleAdapter {
         }
         System.out.println("Stats for this deck:");
         System.out.println("High confidence: " + deck.highConfidenceCount());
+        System.out.println("Medium confidence: " + deck.mediumConfidenceCount());
     }
 
     private void askAboutOneCard(Card card) {
