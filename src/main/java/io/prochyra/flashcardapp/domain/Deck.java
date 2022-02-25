@@ -27,20 +27,6 @@ public class Deck implements Iterable<Card> {
         return cards.spliterator();
     }
 
-    public List<Card> lowConfidenceCards() {
-        return cardsOf(Confidence.LOW);
-    }
-
-    public List<Card> unknownConfidenceCards() {
-        return cardsOf(Confidence.UNKNOWN);
-    }
-
-    private List<Card> cardsOf(Confidence confidence) {
-        return cards.stream()
-                .filter(card -> card.confidence().equals(confidence))
-                .toList();
-    }
-
     public int totalCardCount() {
         return cards.size();
     }
