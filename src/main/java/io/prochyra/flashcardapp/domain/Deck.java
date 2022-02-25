@@ -39,19 +39,25 @@ public class Deck implements Iterable<Card> {
                 .toList();
     }
 
+    public int totalCardCount() {
+        return cards.size();
+    }
+
     public long highConfidenceCount() {
         return cards.stream()
                 .filter(card -> card.confidence().equals(Confidence.HIGH))
                 .count();
     }
 
-    public int totalCardCount() {
-        return cards.size();
-    }
-
     public long mediumConfidenceCount() {
         return cards.stream()
                 .filter(card -> card.confidence().equals(Confidence.MEDIUM))
+                .count();
+    }
+
+    public long lowConfidenceCount() {
+        return cards.stream()
+                .filter(card -> card.confidence().equals(Confidence.LOW))
                 .count();
     }
 }

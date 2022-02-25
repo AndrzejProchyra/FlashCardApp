@@ -69,4 +69,14 @@ class DeckTest {
         
         assertThat(deck.mediumConfidenceCount()).isOne();
     }
+
+    @Test
+    void givesCountOfLowConfidenceCards() {
+        Card lowConfidenceCard = new Card("x", "x");
+        lowConfidenceCard.flip();
+        lowConfidenceCard.recordConfidence(Confidence.LOW);
+        Deck deck = new Deck(List.of(lowConfidenceCard));
+
+        assertThat(deck.lowConfidenceCount()).isOne();
+    }
 }
