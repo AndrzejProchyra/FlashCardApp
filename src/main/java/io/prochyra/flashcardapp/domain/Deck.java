@@ -28,14 +28,16 @@ public class Deck implements Iterable<Card> {
     }
 
     public List<Card> lowConfidenceCards() {
-        return cards.stream()
-                .filter(card -> card.confidence().equals(Confidence.LOW))
-                .toList();
+        return cardsOf(Confidence.LOW);
     }
 
     public List<Card> unknownConfidenceCards() {
+        return cardsOf(Confidence.UNKNOWN);
+    }
+
+    private List<Card> cardsOf(Confidence confidence) {
         return cards.stream()
-                .filter(card -> card.confidence().equals(Confidence.UNKNOWN))
+                .filter(card -> card.confidence().equals(confidence))
                 .toList();
     }
 
