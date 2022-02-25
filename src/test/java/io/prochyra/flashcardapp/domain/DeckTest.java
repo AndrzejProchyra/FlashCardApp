@@ -11,13 +11,18 @@ class DeckTest {
     @Test
     void returnsLowConfidenceCards() {
         Card lowConfidenceCard = new Card("concept", "definition");
-        lowConfidenceCard.flip();
-        lowConfidenceCard.recordConfidence(Confidence.LOW);
         Card highConfidenceCard = new Card("concept", "definition");
-        highConfidenceCard.flip();
-        highConfidenceCard.recordConfidence(Confidence.HIGH);
         Deck deck = new Deck(List.of(lowConfidenceCard, highConfidenceCard));
 
+        
+        
+        lowConfidenceCard.flip();
+        lowConfidenceCard.recordConfidence(Confidence.LOW);
+        highConfidenceCard.flip();
+        highConfidenceCard.recordConfidence(Confidence.HIGH);
+
+        
+        
         assertThat(deck.lowConfidenceCards())
                 .containsOnly(lowConfidenceCard);
     }

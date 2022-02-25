@@ -2,8 +2,8 @@ package io.prochyra.flashcardapp.adapter.in.console;
 
 import io.prochyra.flashcardapp.domain.Card;
 import io.prochyra.flashcardapp.domain.Deck;
+import io.prochyra.flashcardapp.domain.StudySession;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleAdapter {
@@ -17,10 +17,14 @@ public class ConsoleAdapter {
     }
 
     public void start() {
-        List<Card> unknownConfidenceCards = deck.unknownConfidenceCards();
-        for (Card card : unknownConfidenceCards) {
-            askAboutOneCard(card);
+        System.out.println("How many cards do you want to see? ");
+        int numberOfCards = Integer.parseInt(scanner.nextLine());
+        StudySession studySession = new StudySession(deck, numberOfCards);
+
+        while (studySession.hasNextCard()) {
+            askAboutOneCard(studySession.nextCard());
         }
+        
         System.out.println("Stats for this deck:");
         System.out.println("High confidence: " + deck.highConfidenceCount());
         System.out.println("Medium confidence: " + deck.mediumConfidenceCount());
