@@ -1,5 +1,6 @@
 package io.prochyra.flashcardapp.domain;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Spliterator;
@@ -9,7 +10,9 @@ public class Deck implements Iterable<Card> {
     public final List<Card> cards;
 
     public Deck(List<Card> cards) {
-        this.cards = cards;
+        this.cards = cards.stream()
+                          .sorted(Comparator.comparing(Card::confidence))
+                          .toList();
     }
 
     @Override
@@ -45,7 +48,7 @@ public class Deck implements Iterable<Card> {
 
     private int countForConfidence(Confidence confidence) {
         return (int) cards.stream()
-                .filter(card -> card.confidence().equals(confidence))
-                .count();
+                          .filter(card -> card.confidence().equals(confidence))
+                          .count();
     }
 }
