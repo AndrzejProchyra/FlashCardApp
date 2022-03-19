@@ -9,7 +9,7 @@ class InMemoryCardRepositoryTest {
 
     @Test
     void newRepositoryHasNoCards() {
-        InMemoryCardRepository cardRepository = new InMemoryCardRepository();
+        CardRepository cardRepository = new InMemoryCardRepository();
 
         assertThat(cardRepository.findAll())
                 .isEmpty();
@@ -17,7 +17,7 @@ class InMemoryCardRepositoryTest {
 
     @Test
     void savesOneCard() {
-        InMemoryCardRepository cardRepository = new InMemoryCardRepository();
+        CardRepository cardRepository = new InMemoryCardRepository();
         Card card = new Card("concept1", "definition1");
 
         cardRepository.save(card);
@@ -28,7 +28,7 @@ class InMemoryCardRepositoryTest {
 
     @Test
     void savesTwoCards() {
-        InMemoryCardRepository cardRepository = new InMemoryCardRepository();
+        CardRepository cardRepository = new InMemoryCardRepository();
         Card card1 = new Card("concept1", "definition1");
         Card card2 = new Card("concept2", "definition2");
 
@@ -41,7 +41,7 @@ class InMemoryCardRepositoryTest {
 
     @Test
     void returnsSavedCard() {
-        InMemoryCardRepository cardRepository = new InMemoryCardRepository();
+        CardRepository cardRepository = new InMemoryCardRepository();
         Card card = new Card("concept1", "definition1");
 
         assertThat(cardRepository.save(card))
