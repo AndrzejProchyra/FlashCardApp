@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Card Creator</title>
 </head>
 <body>
-
+<!--Unsorted list of cards in the repository-->
+<table>
+    <tr>
+        <th>Concept</th>
+        <th>Definition</th>
+    </tr>
+    <tr th:each="card: ${cards}">
+        <td th:text="${card.concept}">Concept 1</td>
+        <td th:text="${card.definition}">Definition 1</td>
+    </tr>
+</table>
 </body>
 </html>

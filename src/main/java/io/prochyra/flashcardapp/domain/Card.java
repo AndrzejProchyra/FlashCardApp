@@ -17,6 +17,14 @@ public class Card {
         this.confidence = confidence;
     }
 
+    public String concept() {
+        return concept;
+    }
+
+    public String definition() {
+        return definition;
+    }
+
     public String content() {
         return isFlipped ? definition : concept;
     }
