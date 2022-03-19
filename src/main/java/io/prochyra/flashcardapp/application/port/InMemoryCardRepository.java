@@ -15,6 +15,6 @@ public class InMemoryCardRepository {
 
     public Card save(Card card) {
         this.cards.add(card);
-        return null;
+        return card;
     }
 }

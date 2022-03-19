@@ -38,4 +38,14 @@ class InMemoryCardRepositoryTest {
         assertThat(cardRepository.findAll())
                 .containsExactly(card1, card2);
     }
+
+    @Test
+    void returnsSavedCard() {
+        InMemoryCardRepository cardRepository = new InMemoryCardRepository();
+        Card card = new Card("concept1", "definition1");
+
+        assertThat(cardRepository.save(card))
+                .isEqualTo(card);
+
+    }
 }
