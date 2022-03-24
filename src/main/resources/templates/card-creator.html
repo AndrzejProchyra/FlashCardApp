@@ -16,5 +16,14 @@
         <td th:text="${card.definition}">Definition 1</td>
     </tr>
 </table>
+<form method="post" th:object="${cardForm}">
+    <label>Concept
+        <input th:field="*{concept}" type="text">
+    </label>
+    <label>Definition
+        <input th:field="*{definition}" type="text">
+    </label>
+    <input type="submit" value="Create Card">
+</form>
 </body>
 </html>

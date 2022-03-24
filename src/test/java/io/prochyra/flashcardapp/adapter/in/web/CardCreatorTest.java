@@ -29,4 +29,20 @@ class CardCreatorTest {
         assertThat(cards)
                 .hasSize(2);
     }
+
+    @Test
+    void cardFormIsPersistedAsCardInRepository() {
+        CardRepository repository = new InMemoryCardRepository();
+        CardCreator cardCreator = new CardCreator(repository);
+        CardForm cardForm = new CardForm();
+        cardForm.setConcept("Concept 1");
+        cardForm.setDefinition("Definition 1");
+
+        cardCreator.createCard(cardForm);
+
+        assertThat(repository.findAll())
+                .first()
+                .extracting("concept", "definition")
+                .contains("Concept 1", "Definition 1");
+    }
 }
