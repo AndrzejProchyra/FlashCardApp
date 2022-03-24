@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class CardCreatorTest {
 
     @Test
-    void modelContainsAllCardsFromRepositoryAsCardViews() {
+    void onHomePageThenModelContainsAllCardsFromRepository() {
         CardRepository repository = new InMemoryCardRepository();
         Card card1 = new Card("concept1", "defintion1");
         Card card2 = new Card("concept2", "defintion2");
@@ -31,7 +31,7 @@ class CardCreatorTest {
     }
 
     @Test
-    void cardFormIsPersistedAsCardInRepository() {
+    void createCardWithCardFormIsSavedInRepository() {
         CardRepository repository = new InMemoryCardRepository();
         CardCreator cardCreator = new CardCreator(repository);
         CardForm cardForm = new CardForm();
