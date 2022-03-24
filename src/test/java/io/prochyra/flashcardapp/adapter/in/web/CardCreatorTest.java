@@ -41,6 +41,7 @@ class CardCreatorTest {
         cardCreator.createCard(cardForm);
 
         assertThat(repository.findAll())
+                .hasSize(1)
                 .first()
                 .extracting("concept", "definition")
                 .contains("Concept 1", "Definition 1");
