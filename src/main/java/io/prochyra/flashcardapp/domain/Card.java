@@ -2,6 +2,7 @@ package io.prochyra.flashcardapp.domain;
 
 public class Card {
 
+    private CardId id;
     private final String definition;
     private final String concept;
     private boolean isFlipped;
@@ -53,6 +54,15 @@ public class Card {
         if (!isFlipped) {
             throw new IllegalStateException("Card not flipped");
         }
+    }
+
+
+    public CardId getId() {
+        return id;
+    }
+
+    public void setId(CardId id) {
+        this.id = id;
     }
 
     @Override

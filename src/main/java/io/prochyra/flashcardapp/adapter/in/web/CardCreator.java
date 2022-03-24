@@ -1,6 +1,8 @@
 package io.prochyra.flashcardapp.adapter.in.web;
 
+import io.prochyra.flashcardapp.application.CardService;
 import io.prochyra.flashcardapp.application.port.CardRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +15,11 @@ import java.util.List;
 public class CardCreator {
 
     private final CardRepository repository;
+    private final CardService cardService;
 
-    public CardCreator(CardRepository repository) {
+    @Autowired
+    public CardCreator(CardRepository repository, CardService cardService) {
+        this.cardService = cardService;
         this.repository = repository;
     }
 
@@ -31,7 +36,7 @@ public class CardCreator {
 
     @PostMapping("/")
     public String createCard(@ModelAttribute CardForm cardForm) {
-        repository.save(cardForm.toCard());
+        cardService.add(cardForm.getConcept(), cardForm.getDefinition());
         return "redirect:/";
     }
 }

@@ -1,7 +1,5 @@
 package io.prochyra.flashcardapp.adapter.in.web;
 
-import io.prochyra.flashcardapp.domain.Card;
-
 public class CardForm {
     
     private String concept;
@@ -23,7 +21,4 @@ public class CardForm {
         return definition;
     }
 
-    public Card toCard() {
-        return new Card(concept, definition);
-    }
 }
