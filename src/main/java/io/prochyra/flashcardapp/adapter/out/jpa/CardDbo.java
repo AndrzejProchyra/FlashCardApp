@@ -5,8 +5,11 @@ import io.prochyra.flashcardapp.domain.Confidence;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "cards")
 public class CardDbo {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
