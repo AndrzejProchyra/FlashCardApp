@@ -23,7 +23,7 @@ public class CardRepositoryJpaAdapter implements CardRepository {
 
     @Override
     public Card save(Card card) {
-        cardJpaRepository.save(CardDbo.from(card));
-        return null;
+        CardDbo cardDbo = cardJpaRepository.save(CardDbo.from(card));
+        return cardDbo.asCard();
     }
 }
