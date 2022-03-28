@@ -72,19 +72,12 @@ public class Card {
 
         Card card = (Card) o;
 
-        if (isFlipped != card.isFlipped) return false;
-        if (!definition.equals(card.definition)) return false;
-        if (!concept.equals(card.concept)) return false;
-        return confidence == card.confidence;
+        return id != null ? id.equals(card.id) : card.id == null;
     }
 
     @Override
     public int hashCode() {
-        int result = definition.hashCode();
-        result = 31 * result + concept.hashCode();
-        result = 31 * result + (isFlipped ? 1 : 0);
-        result = 31 * result + confidence.hashCode();
-        return result;
+        return id != null ? id.hashCode() : 0;
     }
 
     @Override
