@@ -24,6 +24,14 @@ public class CardDbo {
     @Column(name = "confidence")
     private Confidence confidence;
 
+    static CardDbo from(Card card) {
+        CardDbo cardDbo = new CardDbo();
+        cardDbo.setConcept(card.concept());
+        cardDbo.setDefinition(card.definition());
+        cardDbo.setConfidence(card.confidence());
+        return cardDbo;
+    }
+
     public Confidence getConfidence() {
         return confidence;
     }
