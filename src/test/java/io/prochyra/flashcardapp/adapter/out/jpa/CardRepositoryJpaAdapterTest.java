@@ -63,4 +63,15 @@ class CardRepositoryJpaAdapterTest {
         assertThat(cards)
                 .containsExactly(expectedCard);
     }
+
+    @Test
+    void saveOneCardIsRetrievedUsingFindAll() {
+        Card card = new Card("concept", "definition", Confidence.UNKNOWN);
+        CardRepository cardRepository = new CardRepositoryJpaAdapter(cardJpaRepository);
+
+        cardRepository.save(card);
+
+        assertThat(cardRepository.findAll())
+                .containsExactly(card);
+    }
 }
