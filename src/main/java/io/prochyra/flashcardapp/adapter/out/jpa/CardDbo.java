@@ -1,5 +1,6 @@
 package io.prochyra.flashcardapp.adapter.out.jpa;
 
+import io.prochyra.flashcardapp.domain.Card;
 import io.prochyra.flashcardapp.domain.Confidence;
 
 import javax.persistence.*;
@@ -53,5 +54,9 @@ public class CardDbo {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    Card asCard() {
+        return new Card(concept, definition, confidence);
     }
 }

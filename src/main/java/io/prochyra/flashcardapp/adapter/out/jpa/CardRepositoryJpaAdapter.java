@@ -17,13 +17,8 @@ public class CardRepositoryJpaAdapter implements CardRepository {
     public List<Card> findAll() {
         return cardJpaRepository.findAll()
                 .stream()
-                .map(this::asCard)
+                .map(CardDbo::asCard)
                 .toList();
-    }
-
-    private Card asCard(CardDbo cardDbo) {
-        Card card = new Card(cardDbo.getConcept(), cardDbo.getDefinition(), cardDbo.getConfidence());
-        return card;
     }
 
     @Override
