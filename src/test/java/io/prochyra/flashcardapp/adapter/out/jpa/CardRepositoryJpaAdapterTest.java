@@ -2,6 +2,7 @@ package io.prochyra.flashcardapp.adapter.out.jpa;
 
 import io.prochyra.flashcardapp.application.port.CardRepository;
 import io.prochyra.flashcardapp.domain.Card;
+import io.prochyra.flashcardapp.domain.Confidence;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,11 +40,27 @@ class CardRepositoryJpaAdapterTest {
 
     @Test
     void emptyRepositoryFindAllGetsEmptyList() {
-        CardRepository cardRepositoryJpaAdapter = new CardRepositoryJpaAdapter();
+        CardRepository cardRepositoryJpaAdapter = new CardRepositoryJpaAdapter(cardJpaRepository);
 
         List<Card> cards = cardRepositoryJpaAdapter.findAll();
 
         assertThat(cards)
                 .isEmpty();
+    }
+
+    @Test
+    void repositoryWithOneCardFindAllGetsCard() {
+        CardDbo cardDbo = new CardDbo();
+        cardDbo.setConcept("concept");
+        cardDbo.setDefinition("definition");
+        cardDbo.setConfidence(Confidence.UNKNOWN);
+        cardJpaRepository.save(cardDbo);
+        CardRepository cardRepository = new CardRepositoryJpaAdapter(cardJpaRepository);
+
+        List<Card> cards = cardRepository.findAll();
+
+        Card expectedCard = new Card("concept", "definition", Confidence.UNKNOWN);
+        assertThat(cards)
+                .containsExactly(expectedCard);
     }
 }
