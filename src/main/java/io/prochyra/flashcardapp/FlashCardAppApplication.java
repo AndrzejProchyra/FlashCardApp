@@ -2,7 +2,6 @@ package io.prochyra.flashcardapp;
 
 import io.prochyra.flashcardapp.application.CardService;
 import io.prochyra.flashcardapp.application.port.CardRepository;
-import io.prochyra.flashcardapp.application.port.InMemoryCardRepository;
 import io.prochyra.flashcardapp.domain.Card;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,10 +15,10 @@ public class FlashCardAppApplication {
         SpringApplication.run(FlashCardAppApplication.class, args);
     }
 
-    @Bean
-    CardRepository cardRepository() {
-        return new InMemoryCardRepository();
-    }
+//    @Bean
+//    CardRepository cardRepository() {
+//        return new InMemoryCardRepository();
+//    }
 
     @Bean
     CardService cardService(CardRepository repository) {

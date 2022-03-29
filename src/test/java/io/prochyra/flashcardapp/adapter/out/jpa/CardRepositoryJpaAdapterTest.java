@@ -83,6 +83,25 @@ class CardRepositoryJpaAdapterTest {
         Card savedCard = cardRepository.save(card);
 
         assertThat(savedCard)
+                .usingRecursiveComparison()
+                .ignoringFields("id")
                 .isEqualTo(card);
+    }
+
+    @Test
+    void saveUpdatesExistingCard() {
+        Card card = new Card("concept", "definition", Confidence.UNKNOWN);
+        CardRepository cardRepository = new CardRepositoryJpaAdapter(cardJpaRepository);
+
+        Card savedCard = cardRepository.save(card);
+        savedCard.flip();
+        savedCard.recordConfidence(Confidence.HIGH);
+        cardRepository.save(savedCard);
+
+        List<Card> cards = cardRepository.findAll();
+        assertThat(cards)
+                .hasSize(1);
+        assertThat(cards.get(0).confidence())
+                .isEqualTo(Confidence.HIGH);
     }
 }
