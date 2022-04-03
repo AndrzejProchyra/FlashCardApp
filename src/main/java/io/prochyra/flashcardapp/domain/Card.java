@@ -2,9 +2,9 @@ package io.prochyra.flashcardapp.domain;
 
 public class Card {
 
-    private CardId id;
     private final String definition;
     private final String concept;
+    private CardId id;
     private boolean isFlipped;
     private Confidence confidence;
 
@@ -83,7 +83,8 @@ public class Card {
     @Override
     public String toString() {
         return "Card{" +
-                "definition='" + definition + '\'' +
+                "id=" + id +
+                ", definition='" + definition + '\'' +
                 ", concept='" + concept + '\'' +
                 ", isFlipped=" + isFlipped +
                 ", confidence=" + confidence +
