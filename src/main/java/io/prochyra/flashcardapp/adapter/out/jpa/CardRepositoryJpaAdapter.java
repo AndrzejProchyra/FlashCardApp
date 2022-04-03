@@ -2,11 +2,9 @@ package io.prochyra.flashcardapp.adapter.out.jpa;
 
 import io.prochyra.flashcardapp.application.port.CardRepository;
 import io.prochyra.flashcardapp.domain.Card;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
 public class CardRepositoryJpaAdapter implements CardRepository {
 
     private final CardJpaRepository cardJpaRepository;
