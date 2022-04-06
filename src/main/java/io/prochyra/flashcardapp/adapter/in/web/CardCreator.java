@@ -14,18 +14,18 @@ import java.util.List;
 @Controller
 public class CardCreator {
 
-    private final CardRepository repository;
+    private final CardRepository cardRepository;
     private final CardService cardService;
 
     @Autowired
-    public CardCreator(CardRepository repository, CardService cardService) {
+    public CardCreator(CardRepository cardRepository, CardService cardService) {
         this.cardService = cardService;
-        this.repository = repository;
+        this.cardRepository = cardRepository;
     }
 
     @GetMapping("/")
     public String homePage(Model model) {
-        List<CardView> cardViews = repository.findAll()
+        List<CardView> cardViews = cardRepository.findAll()
                 .stream()
                 .map(CardView::from)
                 .toList();
