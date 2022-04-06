@@ -38,4 +38,10 @@ class WebIntegrationTest {
         mockMvc.perform(post("/"))
                 .andExpect(redirectedUrl("/"));
     }
+
+    @Test
+    void getOfFlashcardReturns200() throws Exception {
+        mockMvc.perform(get("/flashcard"))
+                .andExpect(status().isOk());
+    }
 }
