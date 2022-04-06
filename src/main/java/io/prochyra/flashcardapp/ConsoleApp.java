@@ -6,7 +6,7 @@ import io.prochyra.flashcardapp.application.port.InMemoryCardRepository;
 import io.prochyra.flashcardapp.domain.Card;
 import io.prochyra.flashcardapp.domain.Deck;
 
-public class FlashCardApp {
+public class ConsoleApp {
     
     public static void main(String[] args) {
         CardRepository cardRepository = new InMemoryCardRepository();
