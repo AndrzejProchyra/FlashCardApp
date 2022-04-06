@@ -1,5 +1,6 @@
 package io.prochyra.flashcardapp.adapter.in.web;
 
+import io.prochyra.flashcardapp.application.CardService;
 import io.prochyra.flashcardapp.application.port.CardRepository;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -22,6 +23,9 @@ class WebIntegrationTest {
 
     @MockBean
     CardRepository cardRepository;
+
+    @MockBean
+    CardService cardService;
 
     @Test
     void getOfHomepageReturns200() throws Exception {
