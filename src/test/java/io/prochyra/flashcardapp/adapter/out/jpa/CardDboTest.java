@@ -16,7 +16,6 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-//@Import(CardRepositoryJpaAdapter.class)
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @Testcontainers
 @Tag("integration")
