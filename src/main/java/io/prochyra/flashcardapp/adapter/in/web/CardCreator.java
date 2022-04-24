@@ -23,7 +23,7 @@ public class CardCreator {
         this.cardRepository = cardRepository;
     }
 
-    @GetMapping("/")
+    @GetMapping("/create")
     public String homePage(Model model) {
         List<CardView> cardViews = cardRepository.findAll()
                 .stream()

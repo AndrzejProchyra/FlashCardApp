@@ -11,8 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest
 @Tag("integration")
@@ -28,15 +27,23 @@ class WebIntegrationTest {
     CardService cardService;
 
     @Test
-    void getOfHomepageReturns200() throws Exception {
+    void getOfHomepageReturns200AndStartView() throws Exception {
         mockMvc.perform(get("/"))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(view().name("start"));
     }
 
     @Test
     void postToHomepageRedirectsToSamePage() throws Exception {
         mockMvc.perform(post("/"))
                 .andExpect(redirectedUrl("/"));
+    }
+
+    @Test
+    void getOfCreateReturns200AndCreateView() throws Exception {
+        mockMvc.perform(get("/create"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("card-creator"));
     }
 
     @Test
