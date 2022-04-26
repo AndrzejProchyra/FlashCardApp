@@ -13,12 +13,7 @@ public class FlashCardController {
         model.addAttribute("concept", "anystring");
         return "flashcard";
     }
-
-    @GetMapping("/start")
-    String start() {
-        return "start";
-    }
-
+    
     @PostMapping("/start")
     String newSession() {
         return "redirect:";

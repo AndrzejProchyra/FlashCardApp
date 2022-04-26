@@ -51,13 +51,7 @@ class WebIntegrationTest {
         mockMvc.perform(get("/flashcard"))
                 .andExpect(status().isOk());
     }
-
-    @Test
-    void getStartPageReturns200() throws Exception {
-        mockMvc.perform(get("/start"))
-                .andExpect(status().isOk());
-    }
-
+    
     @Test
     void postToStartRedirects() throws Exception {
         mockMvc.perform(post("/start"))
