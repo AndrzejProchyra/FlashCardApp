@@ -34,9 +34,9 @@ class WebIntegrationTest {
     }
 
     @Test
-    void postToHomepageRedirectsToSamePage() throws Exception {
-        mockMvc.perform(post("/"))
-                .andExpect(redirectedUrl("/"));
+    void postToCreateRedirectsToCreate() throws Exception {
+        mockMvc.perform(post("/create"))
+                .andExpect(redirectedUrl("/create"));
     }
 
     @Test

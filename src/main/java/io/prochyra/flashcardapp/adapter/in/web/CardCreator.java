@@ -34,9 +34,9 @@ public class CardCreator {
         return "card-creator";
     }
 
-    @PostMapping("/")
+    @PostMapping("/create")
     public String createCard(@ModelAttribute CardForm cardForm) {
         cardService.add(cardForm.getConcept(), cardForm.getDefinition());
-        return "redirect:/";
+        return "redirect:/create";
     }
 }
