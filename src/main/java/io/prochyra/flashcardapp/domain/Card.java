@@ -65,6 +65,10 @@ public class Card {
         this.id = id;
     }
 
+    public boolean isFlipped() {
+        return isFlipped;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

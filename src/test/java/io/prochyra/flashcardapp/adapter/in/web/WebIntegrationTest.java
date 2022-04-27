@@ -57,4 +57,10 @@ class WebIntegrationTest {
         mockMvc.perform(post("/start"))
                 .andExpect(status().is3xxRedirection());
     }
+
+    @Test
+    void postToFlipRedirects() throws Exception {
+        mockMvc.perform(post("/flip"))
+            .andExpect(status().is3xxRedirection());
+    }
 }

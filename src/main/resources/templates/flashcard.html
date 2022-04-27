@@ -6,9 +6,14 @@
 </head>
 <body>
 <h1>Flash Card App</h1>
-<div th:text="${concept}">Capital of France</div>
-<form method="post" th:action="@{/flip}">
+<div th:text="${content}">Capital of France</div>
+<form th:if="${showFlip}" method="post" th:action="@{/flip}">
     <input type="submit" value="Flip">
+</form>
+<form th:unless="${showFlip}" method="post" th:action="@{/confidence}">
+    <input type="submit" value="Low">
+    <input type="submit" value="Medium">
+    <input type="submit" value="High">
 </form>
 </body>
 </html>
