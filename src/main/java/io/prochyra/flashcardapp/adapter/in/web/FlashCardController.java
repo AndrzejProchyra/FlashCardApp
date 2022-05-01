@@ -35,6 +35,6 @@ public class FlashCardController {
 
     @PostMapping("/confidence")
     String recordConfidence() {
-        return "redirect:";
+        return "redirect:/flashcard";
     }
 }

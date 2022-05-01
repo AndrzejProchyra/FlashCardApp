@@ -67,4 +67,14 @@ class FlashCardControllerTest {
         assertThat(showFlip)
                 .isFalse();
     }
+
+    @Test
+    void recordConfidenceRedirectsToFlashcard() {
+        FlashCardController flashCardController = new FlashCardController();
+
+        String redirect = flashCardController.recordConfidence();
+
+        assertThat(redirect)
+                .isEqualTo("redirect:/flashcard");
+    }
 }
