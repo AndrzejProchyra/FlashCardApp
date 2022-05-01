@@ -18,12 +18,13 @@ class FlashCardControllerTest {
     }
 
     @Test
-    void startRedirectsToFlashcard() {
+    void newSessionRedirectsToFlashcard() {
         FlashCardController flashCardController = new FlashCardController();
 
         String redirect = flashCardController.newSession();
 
-        assertThat(redirect).isEqualTo("redirect:/flashcard");
+        assertThat(redirect)
+                .isEqualTo("redirect:/flashcard");
     }
 
     @Test
@@ -38,7 +39,7 @@ class FlashCardControllerTest {
         assertThat(concept)
                 .isEqualTo("first concept");
         assertThat(showFlip)
-            .isTrue();
+                .isTrue();
     }
 
     @Test
