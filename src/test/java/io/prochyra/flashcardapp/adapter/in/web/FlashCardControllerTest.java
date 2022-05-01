@@ -35,7 +35,7 @@ class FlashCardControllerTest {
         flashCardController.flashCard(model);
 
         String concept = (String) model.getAttribute("content");
-        boolean showFlip = (boolean) model.getAttribute("showFlip");
+        Boolean showFlip = (Boolean) model.getAttribute("showFlip");
         assertThat(concept)
                 .isEqualTo("first concept");
         assertThat(showFlip)
@@ -61,7 +61,7 @@ class FlashCardControllerTest {
         flashCardController.flashCard(model);
 
         String definition = (String) model.getAttribute("content");
-        boolean showFlip = (boolean) model.getAttribute("showFlip");
+        Boolean showFlip = (Boolean) model.getAttribute("showFlip");
         assertThat(definition)
                 .isEqualTo("first definition");
         assertThat(showFlip)

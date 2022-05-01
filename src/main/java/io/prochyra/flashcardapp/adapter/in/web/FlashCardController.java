@@ -21,7 +21,7 @@ public class FlashCardController {
     String home() {
         return "start";
     }
-    
+
     @PostMapping("/start")
     String newSession() {
         return "redirect:/flashcard";
@@ -31,5 +31,10 @@ public class FlashCardController {
     String flip() {
         card.flip();
         return "redirect:/flashcard";
+    }
+
+    @PostMapping("/confidence")
+    String recordConfidence() {
+        return "redirect:";
     }
 }

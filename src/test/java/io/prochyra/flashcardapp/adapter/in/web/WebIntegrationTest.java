@@ -51,7 +51,7 @@ class WebIntegrationTest {
         mockMvc.perform(get("/flashcard"))
                 .andExpect(status().isOk());
     }
-    
+
     @Test
     void postToStartRedirects() throws Exception {
         mockMvc.perform(post("/start"))
@@ -61,6 +61,12 @@ class WebIntegrationTest {
     @Test
     void postToFlipRedirects() throws Exception {
         mockMvc.perform(post("/flip"))
-            .andExpect(status().is3xxRedirection());
+                .andExpect(status().is3xxRedirection());
+    }
+
+    @Test
+    void postToConfidenceRedirects() throws Exception {
+        mockMvc.perform(post("/confidence"))
+                .andExpect(status().is3xxRedirection());
     }
 }
