@@ -2,6 +2,7 @@ package io.prochyra.flashcardapp.adapter.in.web;
 
 import io.prochyra.flashcardapp.application.CardService;
 import io.prochyra.flashcardapp.application.port.CardRepository;
+import io.prochyra.flashcardapp.domain.StudySession;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ class WebIntegrationTest {
 
     @MockBean
     CardService cardService;
+    
+    @MockBean
+    StudySession studySession;
 
     @Test
     void getOfHomepageReturns200AndStartView() throws Exception {
