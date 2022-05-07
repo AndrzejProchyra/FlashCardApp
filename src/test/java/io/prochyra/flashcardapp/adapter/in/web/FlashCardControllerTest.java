@@ -18,10 +18,20 @@ class FlashCardControllerTest {
     void flashCardReturnsViewName() {
         StudySession studySession = createStudySessionWithOneDummyCard();
         FlashCardController flashCardController = new FlashCardController(studySession);
+        flashCardController.newSession();
         Model model = new ConcurrentModel();
 
         assertThat(flashCardController.flashCard(model))
                 .isEqualTo("flashcard");
+    }
+
+    @Test
+    void newFlashCardControllerStudySessionHasNotStarted() {
+        StudySession studySession = createStudySessionWithOneDummyCard();
+        new FlashCardController(studySession);
+
+        assertThat(studySession.currentCard())
+                .isNull();
     }
 
     @Test
@@ -41,8 +51,8 @@ class FlashCardControllerTest {
                 new Card("first card concept", "doesn't matter")
         ));
         StudySession studySession = new StudySession(deck, 1);
-
         FlashCardController flashCardController = new FlashCardController(studySession);
+        flashCardController.newSession();
 
         Model model = new ConcurrentModel();
         flashCardController.flashCard(model);
@@ -58,8 +68,8 @@ class FlashCardControllerTest {
     @Test
     void flipRedirectsToFlashcard() {
         StudySession studySession = createStudySessionWithOneDummyCard();
-
         FlashCardController flashCardController = new FlashCardController(studySession);
+        flashCardController.newSession();
 
         String redirect = flashCardController.flip();
 
@@ -82,8 +92,8 @@ class FlashCardControllerTest {
                 new Card("doesn't matter", "first card definition")
         ));
         StudySession studySession = new StudySession(deck, 1);
-
         FlashCardController flashCardController = new FlashCardController(studySession);
+        flashCardController.newSession();
         flashCardController.flip();
 
         Model model = new ConcurrentModel();

@@ -13,7 +13,6 @@ public class FlashCardController {
 
     public FlashCardController(StudySession studySession) {
         this.studySession = studySession;
-        studySession.nextCard();
     }
 
     @GetMapping("/flashcard")
@@ -31,6 +30,7 @@ public class FlashCardController {
 
     @PostMapping("/start")
     String newSession() {
+        studySession.nextCard();
         return "redirect:/flashcard";
     }
 
