@@ -5,6 +5,7 @@ import java.util.Iterator;
 public class StudySession {
     private final Iterator<Card> cardIterator;
     private int cardCount;
+    private Card currentCard;
 
     public StudySession(Deck deck, int cardCount) {
         requireOneOrMoreCards(cardCount);
@@ -15,7 +16,8 @@ public class StudySession {
 
     public Card nextCard() {
         cardCount--;
-        return cardIterator.next();
+        currentCard = cardIterator.next();
+        return currentCard;
     }
 
     public boolean hasNextCard() {
@@ -33,5 +35,9 @@ public class StudySession {
             throw new IllegalArgumentException(String.format("Can't create session of %d cards from deck with only %d.",
                     cardCount, deck.totalCardCount()));
         }
+    }
+
+    public Card currentCard() {
+        return currentCard;
     }
 }

@@ -72,6 +72,15 @@ class StudySessionTest {
                 .hasMessage("Can't create session of 2 cards from deck with only 1.");
     }
 
+    @Test
+    void sessionWithOneCardAfterNextCardThenCurrentCardReturnsCard() {
+        StudySession session = createWithDeckOf(CARD_A);
+        session.nextCard();
+        
+        assertThat(session.currentCard())
+                .isEqualTo(CARD_A);
+    }
+
     private StudySession createWithDeckOf(Card... cards) {
         Deck deck = new Deck(List.of(cards));
         return new StudySession(deck, cards.length);
