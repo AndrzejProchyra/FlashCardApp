@@ -3,10 +3,10 @@ package io.prochyra.flashcardapp.application;
 import io.prochyra.flashcardapp.application.port.CardRepository;
 import io.prochyra.flashcardapp.domain.Card;
 
-public class CardService {
+public class AddCardService {
     private final CardRepository repository;
 
-    public CardService(CardRepository repository) {
+    public AddCardService(CardRepository repository) {
         this.repository = repository;
     }
 

@@ -1,6 +1,6 @@
 package io.prochyra.flashcardapp;
 
-import io.prochyra.flashcardapp.application.CardService;
+import io.prochyra.flashcardapp.application.AddCardService;
 import io.prochyra.flashcardapp.application.port.CardRepository;
 import io.prochyra.flashcardapp.domain.Card;
 import io.prochyra.flashcardapp.domain.Deck;
@@ -14,8 +14,8 @@ import java.util.List;
 public class FlashCardConfiguration {
 
     @Bean
-    CardService cardService(CardRepository repository) {
-        return new CardService(repository);
+    AddCardService cardService(CardRepository repository) {
+        return new AddCardService(repository);
     }
 
     @Bean

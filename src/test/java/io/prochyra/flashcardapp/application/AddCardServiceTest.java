@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class CardServiceTest {
+class AddCardServiceTest {
 
   @Test
   void addCreatesNewCardInRepository() {
     CardRepository repository = new InMemoryCardRepository();
-    CardService cardService = new CardService(repository);
+    AddCardService addCardService = new AddCardService(repository);
 
-    cardService.add("Concept 1", "Definition 1");
+    addCardService.add("Concept 1", "Definition 1");
 
     assertThat(repository.findAll())
         .hasSize(1)
