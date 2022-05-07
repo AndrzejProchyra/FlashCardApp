@@ -16,12 +16,9 @@ class FlashCardControllerTest {
 
     @Test
     void flashCardReturnsViewName() {
-        StudySession studySession = createStudySessionWithOneDummyCard();
-        FlashCardController flashCardController = new FlashCardController(studySession);
-        flashCardController.newSession();
-        Model model = new ConcurrentModel();
+        FlashCardController flashCardController = startControllerWithDummySession();
 
-        assertThat(flashCardController.flashCard(model))
+        assertThat(flashCardController.flashCard(new ConcurrentModel()))
                 .isEqualTo("flashcard");
     }
 
@@ -36,8 +33,7 @@ class FlashCardControllerTest {
 
     @Test
     void newSessionRedirectsToFlashcard() {
-        StudySession studySession = createStudySessionWithOneDummyCard();
-        FlashCardController flashCardController = new FlashCardController(studySession);
+        FlashCardController flashCardController = new FlashCardController(createStudySessionWithOneDummyCard());
 
         String redirect = flashCardController.newSession();
 
@@ -47,12 +43,7 @@ class FlashCardControllerTest {
 
     @Test
     void givenNewSessionWhenFlashcardThenFirstCardIsShown() {
-        Deck deck = new Deck(List.of(
-                new Card("first card concept", "doesn't matter")
-        ));
-        StudySession studySession = new StudySession(deck, 1);
-        FlashCardController flashCardController = new FlashCardController(studySession);
-        flashCardController.newSession();
+        FlashCardController flashCardController = startControllerWhereSessionHasCard("first card concept", "doesn't matter");
 
         Model model = new ConcurrentModel();
         flashCardController.flashCard(model);
@@ -67,9 +58,7 @@ class FlashCardControllerTest {
 
     @Test
     void flipRedirectsToFlashcard() {
-        StudySession studySession = createStudySessionWithOneDummyCard();
-        FlashCardController flashCardController = new FlashCardController(studySession);
-        flashCardController.newSession();
+        FlashCardController flashCardController = startControllerWithDummySession();
 
         String redirect = flashCardController.flip();
 
@@ -77,23 +66,9 @@ class FlashCardControllerTest {
                 .isEqualTo("redirect:/flashcard");
     }
 
-    @NotNull
-    private StudySession createStudySessionWithOneDummyCard() {
-        Deck deck = new Deck(List.of(
-                new Card("doesn't matter", "doesn't matter")
-        ));
-        StudySession studySession = new StudySession(deck, 1);
-        return studySession;
-    }
-
     @Test
     void givenFlipFlashcardShowsDefinition() {
-        Deck deck = new Deck(List.of(
-                new Card("doesn't matter", "first card definition")
-        ));
-        StudySession studySession = new StudySession(deck, 1);
-        FlashCardController flashCardController = new FlashCardController(studySession);
-        flashCardController.newSession();
+        FlashCardController flashCardController = startControllerWhereSessionHasCard("doesn't matter", "first card definition");
         flashCardController.flip();
 
         Model model = new ConcurrentModel();
@@ -116,5 +91,32 @@ class FlashCardControllerTest {
 
         assertThat(redirect)
                 .isEqualTo("redirect:/flashcard");
+    }
+
+    @NotNull
+    private StudySession createStudySessionWithOneDummyCard() {
+        Deck deck = new Deck(List.of(
+                new Card("doesn't matter", "doesn't matter")
+        ));
+        return new StudySession(deck, 1);
+    }
+
+    @NotNull
+    private FlashCardController startControllerWithDummySession() {
+        StudySession studySession = createStudySessionWithOneDummyCard();
+        FlashCardController flashCardController = new FlashCardController(studySession);
+        flashCardController.newSession();
+        return flashCardController;
+    }
+
+    @NotNull
+    private FlashCardController startControllerWhereSessionHasCard(String concept, String definition) {
+        Deck deck = new Deck(List.of(
+                new Card(concept, definition)
+        ));
+        StudySession studySession = new StudySession(deck, 1);
+        FlashCardController flashCardController = new FlashCardController(studySession);
+        flashCardController.newSession();
+        return flashCardController;
     }
 }
