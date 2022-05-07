@@ -26,7 +26,8 @@ class FlashCardControllerTest {
 
     @Test
     void newSessionRedirectsToFlashcard() {
-        FlashCardController flashCardController = new FlashCardController();
+        StudySession studySession = createStudySessionWithOneDummyCard();
+        FlashCardController flashCardController = new FlashCardController(studySession);
 
         String redirect = flashCardController.newSession();
 
@@ -98,7 +99,8 @@ class FlashCardControllerTest {
 
     @Test
     void recordConfidenceRedirectsToFlashcard() {
-        FlashCardController flashCardController = new FlashCardController();
+        StudySession studySession = createStudySessionWithOneDummyCard();
+        FlashCardController flashCardController = new FlashCardController(studySession);
 
         String redirect = flashCardController.recordConfidence();
 

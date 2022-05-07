@@ -9,12 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class FlashCardController {
-    Card card = null;
     private StudySession studySession;
-
-    @Deprecated
-    public FlashCardController() {
-    }
 
     public FlashCardController(StudySession studySession) {
         this.studySession = studySession;
