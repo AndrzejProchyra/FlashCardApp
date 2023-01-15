@@ -3,8 +3,7 @@ package io.prochyra.flashcardapp.adapter.out.jpa;
 import io.prochyra.flashcardapp.domain.Card;
 import io.prochyra.flashcardapp.domain.CardId;
 import io.prochyra.flashcardapp.domain.Confidence;
-
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "cards")
