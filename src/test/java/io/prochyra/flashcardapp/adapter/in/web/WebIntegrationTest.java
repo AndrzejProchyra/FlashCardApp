@@ -1,24 +1,26 @@
 package io.prochyra.flashcardapp.adapter.in.web;
 
-import io.prochyra.flashcardapp.FlashCardConfiguration;
 import io.prochyra.flashcardapp.application.AddCardService;
 import io.prochyra.flashcardapp.application.port.CardRepository;
+import io.prochyra.flashcardapp.domain.Card;
+import io.prochyra.flashcardapp.domain.StudySession;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Import;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest
-@Import(FlashCardConfiguration.class)
 @Tag("integration")
 class WebIntegrationTest {
+
+    public static final Card ANY_CARD = new Card("any concept", "any definition");
 
     @Autowired
     MockMvc mockMvc;
@@ -28,6 +30,9 @@ class WebIntegrationTest {
 
     @MockBean
     AddCardService addCardService;
+
+    @MockBean
+    StudySession studySession;
 
     @Test
     void getOfHomepageReturns200AndStartView() throws Exception {
@@ -51,6 +56,8 @@ class WebIntegrationTest {
 
     @Test
     void getOfFlashcardReturns200() throws Exception {
+        given(studySession.currentCard())
+                .willReturn(ANY_CARD);
         mockMvc.perform(get("/flashcard"))
                 .andExpect(status().isOk());
     }
@@ -63,6 +70,8 @@ class WebIntegrationTest {
 
     @Test
     void postToFlipRedirects() throws Exception {
+        given(studySession.currentCard())
+                .willReturn(ANY_CARD);
         mockMvc.perform(post("/flip"))
                 .andExpect(status().is3xxRedirection());
     }
