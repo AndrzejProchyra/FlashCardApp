@@ -17,7 +17,7 @@ public abstract class PostgresTestcontainerBase {
 
     static {
         //noinspection resource
-        POSTGRESQL_CONTAINER = new PostgreSQLContainer<>(DockerImageName.parse("postgres:15"))
+        POSTGRESQL_CONTAINER = new PostgreSQLContainer<>(DockerImageName.parse("postgres:16"))
                 .withDatabaseName("postgrestest")
                 .withUsername("test")
                 .withPassword("test")
