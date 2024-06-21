@@ -18,7 +18,7 @@ class FlashCardApplicationTests {
 
     static {
         //noinspection resource
-        POSTGRESQL_CONTAINER = new PostgreSQLContainer<>(DockerImageName.parse("postgres:14"))
+        POSTGRESQL_CONTAINER = new PostgreSQLContainer<>(DockerImageName.parse("postgres:16"))
                 .withDatabaseName("postgrestest")
                 .withUsername("test")
                 .withPassword("test")
